@@ -252,7 +252,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements I
     @Bean
     public ExtendedMetadata extendedMetadata() {
 	    ExtendedMetadata extendedMetadata = new ExtendedMetadata();
-	    extendedMetadata.setIdpDiscoveryEnabled(true);
+	    extendedMetadata.setIdpDiscoveryEnabled(false);
 	    extendedMetadata.setSigningAlgorithm(signingAlgorithm);
 	    extendedMetadata.setSignMetadata(true);
 	    extendedMetadata.setEcpEnabled(true);
