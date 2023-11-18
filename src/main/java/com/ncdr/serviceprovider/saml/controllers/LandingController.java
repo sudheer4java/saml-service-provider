@@ -18,14 +18,19 @@ package com.ncdr.serviceprovider.saml.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ncdr.serviceprovider.saml.stereotypes.CurrentUser;
+
+import java.util.Map;
 
 @Controller
 public class LandingController {
@@ -34,6 +39,14 @@ public class LandingController {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(LandingController.class);
 
+	/*
+	This method automatically redirects to landing page
+	 */
+	@GetMapping("/")
+	public ResponseEntity<Map<String, String>> redirectLanding() {
+		return ResponseEntity.status(HttpStatus.PERMANENT_REDIRECT)
+				.header("Location", "/landing").build();
+	}
 	@RequestMapping("/landing")
 	public String landing(@CurrentUser User user, Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
